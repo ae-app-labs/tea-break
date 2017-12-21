@@ -11,3 +11,8 @@ This is a react application that is created for educational purposes
  - https://github.com/facebookincubator/create-react-app
  - https://firebase.google.com/docs/database/web/read-and-write
  - https://firebase.google.com/docs/database/web/read-and-write
+ - https://www.youtube.com/watch?v=mwNATxfUsgI
+ 
+## Install Globally
+ `npm install -g create-react-app`  
+ `npm install -g firebase-tools`  
