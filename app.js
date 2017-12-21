@@ -10,24 +10,37 @@
 		messagingSenderId: "972097047700"
 	};
 	firebase.initializeApp(config);
-    
+
 	// Get reference to firebase database
-	const usersRef = firebase.database().ref("users");
-	
-	// Add listener to child_added event
-	usersRef.on("child_added", function(snapshot){
-		console.log(snapshot.val());
-		showUsersAndCount(snapshot.val());
+	const usersRef = firebase.database().ref().child("users");
+
+	usersRef.on("value", snap => {
+		console.log( JSON.stringify(snap.val(), null, 3) );
 	});
-	
-	function showUsersAndCount(data){
-		$("#list").append("<li>" + data.name + " = " + data.count + "</li>");
+
+	usersRef.on("child_added", snapshot => {
+		console.log(snapshot.val());
+		showUsersAndCount(snapshot.val(), snapshot.key);
+	});
+
+	usersRef.on("child_changed", snapshot => {
+		const liChanged = $("#" + snapshot.key);
+		liChanged.innerText = snapshot.val()
+	});
+
+	usersRef.on("child_removed", snapshot => {
+		const liChanged = $("#" + snapshot.key);
+		liChanged.remove()
+	});
+
+	function showUsersAndCount(data, key){
+		$("#list").append("<li id='" + key + "'>" + data.name + " [" + data.count + "]</li>");
 	}
-	
+
 	/*
     var firestore = firebase.firestore();
     const docRef = firestore.doc("boost/dec");
-    
+
     docRef.get()
         .then(function (doc){
             if(doc && doc.exists){
@@ -37,7 +50,7 @@
         }).catch(function(error){
             console.log("error " , error);
         });
-    
+
     function showData(data){
         $("#list").empty();
         for(name in data){
@@ -48,5 +61,5 @@
         }
     }
 	*/
-    
+
 })();
