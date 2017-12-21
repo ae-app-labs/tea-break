@@ -15,26 +15,38 @@ class Table extends React.Component{
       
       TeaBreak.userValues( data => {
           // console.log( JSON.stringify(data, null, 3) );
-          this.setState({
-              usersData: data
+          const users = [];
+          
+          console.log(data.val());
+          
+          data.forEach( function(snap){
+              // console.log(snap.key);
+              users.push({
+                  id : snap.key,
+                  name : snap.val().name,
+                  count : snap.val().count
+              });
           });
+          
+          this.setState({
+              usersData: users
+          });
+          // console.log("End userValues callback" + this.state.usersData);
       });
     }
     
     render(){
         
-        var rows = [];
-        if(this.state.usersData){
-           this.state.usersData.forEach( function(user){
-                rows.push(
-                    <tr>
-                        <td className="mdl-data-table__cell--non-numeric">{user.name}</td>
-                        <td>{user.count}</td>
-                        <td>Empty</td>
-                    </tr>
-                );                            
-            });
-        }
+        const listOfUsers = this.state.usersData.map(position => {
+            console.log(position.name);
+            <tr>
+                <td className="mdl-data-table__cell--non-numeric">{position.name}</td>
+                <td>{position.count}</td>
+                <td>{position.id}</td>
+            </tr>
+        });
+        
+        // console.log("in render " + this.state.usersData);
         
         return(
           <table className="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
@@ -42,11 +54,11 @@ class Table extends React.Component{
             <tr>
               <th className="mdl-data-table__cell--non-numeric">Name</th>
               <th>Count</th>
-              <th>Third Column</th>
+              <th>Id</th>
             </tr>
             </thead>
             <tbody>
-                {rows}
+                {listOfUsers}
             </tbody>
           </table>
         )

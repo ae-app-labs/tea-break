@@ -21,7 +21,7 @@ var TeaBreak = (function(){
 
     var userValues = function(next){
         usersRef.on("value", snap => {
-            next(snap.val());
+            next(snap);
         });
     }
         
