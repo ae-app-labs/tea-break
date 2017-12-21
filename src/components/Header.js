@@ -20,7 +20,7 @@ var Header = React.createClass({
                     <i className="material-icons">search</i>
                   </label>
                   <div className="mdl-textfield__expandable-holder">
-                    <input className="mdl-textfield__input" type="text" id="sample6" />
+                    <input className="mdl-textfield__input" type="text" id="sample6"></input>
                     <label className="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
                   </div>
                 </div>

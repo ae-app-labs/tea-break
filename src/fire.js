@@ -9,9 +9,9 @@ var config = {
 	storageBucket: "tea-break.appspot.com",
 	messagingSenderId: "972097047700"
 };
-var fire = firebase.initializeApp(config);
+var fire = ""; //firebase.initializeApp(config);
 
-export default firebase
+export default fire;
 /*
 	// Get reference to firebase database
 	const usersRef = firebase.database().ref("users");

@@ -1,5 +1,6 @@
 const React = require('react')
 
+ // eslint-disable-next-line
 const Table = React.createClass({
   getInitialState: function(){
     return {
