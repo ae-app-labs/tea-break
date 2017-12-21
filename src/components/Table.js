@@ -1,3 +1,5 @@
+import TeaBreak from '../fire'
+
 const React = require('react')
 
 class Table extends React.Component{
@@ -8,11 +10,22 @@ class Table extends React.Component{
         }
     }
     
+    componentDidMount(){
+      TeaBreak.init();
+      
+      TeaBreak.userValues( data => {
+          // console.log( JSON.stringify(data, null, 3) );
+          this.setState({
+              usersData: data
+          });
+      });
+    }
+    
     render(){
         
         var rows = [];
-        if(this.props.usersData){
-           this.props.usersData.forEach( function(user){
+        if(this.state.usersData){
+           this.state.usersData.forEach( function(user){
                 rows.push(
                     <tr>
                         <td className="mdl-data-table__cell--non-numeric">{user.name}</td>
@@ -20,7 +33,7 @@ class Table extends React.Component{
                         <td>Empty</td>
                     </tr>
                 );                            
-            }).bind(this);
+            });
         }
         
         return(
@@ -33,11 +46,11 @@ class Table extends React.Component{
             </tr>
             </thead>
             <tbody>
-                ${this.rows}
+                {rows}
             </tbody>
           </table>
         )
       }
     }
 
-module.exports = Table
+export default Table
