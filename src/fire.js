@@ -1,17 +1,38 @@
-// import firebase from 'firebase'
+import firebase from 'firebase'
 
-  // Initialize Firebase
-var config = {
-	apiKey: "AIzaSyCvEAF-ZBP6EXM1Z51k0ZCpMBj4J0xxPKg",
-	authDomain: "tea-break.firebaseapp.com",
-	databaseURL: "https://tea-break.firebaseio.com",
-	projectId: "tea-break",
-	storageBucket: "tea-break.appspot.com",
-	messagingSenderId: "972097047700"
-};
-var fire = ""; //firebase.initializeApp(config);
+var TeaBreak = (function(){
 
-export default fire;
+    var usersRef;
+    
+    var init = function(){
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCvEAF-ZBP6EXM1Z51k0ZCpMBj4J0xxPKg",
+            authDomain: "tea-break.firebaseapp.com",
+            databaseURL: "https://tea-break.firebaseio.com",
+            projectId: "tea-break",
+            storageBucket: "tea-break.appspot.com",
+            messagingSenderId: "972097047700"
+        };
+        firebase.initializeApp(config);
+
+        usersRef = firebase.database().ref().child("users");
+    }
+
+    var userValues = function(next){
+        usersRef.on("value", snap => {
+            next(snap.val());
+        });
+    }
+        
+    return {
+        init : init,
+        userValues : userValues
+    }
+    
+})();
+
+export default TeaBreak;
 /*
 	// Get reference to firebase database
 	const usersRef = firebase.database().ref("users");

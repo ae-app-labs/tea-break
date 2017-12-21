@@ -1,42 +1,43 @@
 const React = require('react')
 
- // eslint-disable-next-line
-const Table = React.createClass({
-  getInitialState: function(){
-    return {
-      userDetails : ''
+class Table extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            usersData : []
+        }
     }
-  },
-  render: function(){
-    return(
-      <table className="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-        <thead>
-        <tr>
-          <th className="mdl-data-table__cell--non-numeric">Material</th>
-          <th>Quantity</th>
-          <th>Unit price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td className="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-          <td>25</td>
-          <td>$2.90</td>
-        </tr>
-        <tr>
-          <td className="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-          <td>50</td>
-          <td>$1.25</td>
-        </tr>
-        <tr>
-          <td className="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-          <td>10</td>
-          <td>$2.35</td>
-        </tr>
-        </tbody>
-      </table>
-    )
-  }
-})
+    
+    render(){
+        
+        var rows = [];
+        if(this.props.usersData){
+           this.props.usersData.forEach( function(user){
+                rows.push(
+                    <tr>
+                        <td className="mdl-data-table__cell--non-numeric">{user.name}</td>
+                        <td>{user.count}</td>
+                        <td>Empty</td>
+                    </tr>
+                );                            
+            }).bind(this);
+        }
+        
+        return(
+          <table className="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <thead>
+            <tr>
+              <th className="mdl-data-table__cell--non-numeric">Name</th>
+              <th>Count</th>
+              <th>Third Column</th>
+            </tr>
+            </thead>
+            <tbody>
+                ${this.rows}
+            </tbody>
+          </table>
+        )
+      }
+    }
 
 module.exports = Table
