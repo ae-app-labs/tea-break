@@ -19,21 +19,7 @@ class Table extends React.Component{
       TeaBreak.init();
 
       TeaBreak.userValues( data => {
-          // console.log( JSON.stringify(data, null, 3) );
           const users = [];
-          //console.log(data.val());
-
-          // Variant 2
-          const keys = Object.keys(data.val())
-          console.log(keys)
-          for(userSnap in keys){
-            var user = {
-              id : userSnap.key,
-              name : userSnap.val().name,
-              count : userSnap.val().count
-            }
-            users.push(user);
-          }
 
           // Variant 1
           /*
@@ -47,6 +33,18 @@ class Table extends React.Component{
           });
           */
 
+          // Variant 2
+          const keys = Object.keys(data.val())
+          console.log(keys)
+          keys.forEach( function(userSnap){
+            var user = {
+              id : userSnap.key,
+              name : userSnap.val().name,
+              count : userSnap.val().count
+            }
+            users.push(user);
+          });
+
           // Variant 3
           /*
             data.forEach(function(childSnapshot) {
@@ -56,7 +54,8 @@ class Table extends React.Component{
             }.bind(this));
           */
 
-          addUsers(users);
+          // addUsers(users);
+          this.setState({usersData: users });
       });
     }
 
