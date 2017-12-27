@@ -34,13 +34,13 @@ class Table extends React.Component{
           */
 
           // Variant 2
-          const keys = Object.keys(data.val())
-          console.log(keys)
-          keys.forEach( function(userSnap){
+          const dataValues = data.val();
+          const keys = Object.keys(dataValues)
+          keys.forEach( function(key){
             var user = {
-              id : userSnap.key,
-              name : userSnap.val().name,
-              count : userSnap.val().count
+              id : key,
+              name : dataValues[key].name,
+              count : dataValues[key].count
             }
             users.push(user);
           });
@@ -61,20 +61,20 @@ class Table extends React.Component{
 
     render(){
         const listOfUsers = this.state.usersData.map(position =>
-            <tr>
+            <tr key={position.id}>
+                <td>{position.id}</td>
                 <td className="mdl-data-table__cell--non-numeric">{position.name}</td>
                 <td>{position.count}</td>
-                <td>{position.id}</td>
             </tr>
         );
 
         return(
-          <table className="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+          <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
             <thead>
             <tr>
+              <th>Id</th>
               <th className="mdl-data-table__cell--non-numeric">Name</th>
               <th>Count</th>
-              <th>Id</th>
             </tr>
             </thead>
             <tbody>

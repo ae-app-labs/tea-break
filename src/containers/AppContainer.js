@@ -3,9 +3,6 @@ import Home from '../components/Home';
 import Header from '../components/Header';
 
 class AppContainer extends React.Component{
-    constructor(props){
-        super(props);
-    }
     
     render() {
         return (
@@ -18,6 +15,5 @@ class AppContainer extends React.Component{
         );
     }
 }
-
 
 export default AppContainer;
