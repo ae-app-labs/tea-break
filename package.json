@@ -1,0 +1,38 @@
+{
+  "name": "tea-break",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://midhunhk.github.io/tea-break",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "axios": "^0.15.2",
+    "firebase": "^4.8.1",
+    "if-env": "^1.0.0",
+    "jquery": "^3.2.1",
+    "json-loader": "^0.5.4",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-scripts": "1.0.17",
+    "requirejs": "^2.3.5"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.26.1",
+    "file-loader": "^0.9.0",
+    "gh-pages": "^0.12.0",
+    "html-webpack-plugin": "^2.24.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  }
+}
