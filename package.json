@@ -20,7 +20,7 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-scripts": "5.0.1",
-    "requirejs": "^2.3.5"
+    "requirejs": "^2.3.7"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
