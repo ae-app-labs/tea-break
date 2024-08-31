@@ -19,5 +19,4 @@ This is a react application that is created for educational purposes
  `npm install -g firebase-tools`  
 
 ## Links
- - https://github.com/midhunhk/tea-break
- - https://midhunhk.github.io/tea-break/
+ - [https://midhunhk.github.io/tea-break/](https://ae-app-labs.github.io/tea-break/)
